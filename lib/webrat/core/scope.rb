@@ -204,6 +204,19 @@ module Webrat
 
     webrat_deprecate :selects_datetime, :select_datetime
 
+    # Verifies that all given option elements exist on the current page with
+    # the specified text in a multiple select box. You can optionally restrict
+    # the search to a specific select list by assigning <tt>options[:from]</tt>
+    # the value of the select list's name or a label. Stores the option
+    # values to be sent when the form is submitted.
+    #
+    # Examples:
+    #   select_multiple ["January", "February"]
+    #   select_multiple ["January", "February"], :from => "event_month"
+    #   select_multiple ["January", "February"], :from => "Event Month"
+    def select_multiple(option_texts, options = {})
+      select_options(option_texts, options[:from]).choose
+    end
     # Verifies that an input file field exists on the current page and sets
     # its value to the given +file+, so that the file will be uploaded
     # along with the form. An optional <tt>content_type</tt> may be given.
