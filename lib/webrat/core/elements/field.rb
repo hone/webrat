@@ -419,7 +419,7 @@ module Webrat
     end
 
     def to_param
-      uri_string = @value.collect {|value| "#{name}[]=#{CGI.escape(value)}"}.join("&")
+      uri_string = @value.collect {|value| "#{name}=#{CGI.escape(value)}"}.join("&")
       case Webrat.configuration.mode
       when :rails
         parse_rails_request_params(uri_string)

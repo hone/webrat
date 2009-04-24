@@ -5,14 +5,14 @@ describe "select_multiple" do
     with_html <<-HTML
       <html>
       <form method="post" action="/login">
-        <select name="month" multiple="multiple"><option value="1">January</option><option value="2">February</option></select>
+        <select name="month[]" multiple="multiple"><option value="1">January</option><option value="2">February</option></select>
         <input type="submit" />
       </form>
       </html>
     HTML
     
     webrat_session.should_receive(:post).with("/login", "month" => ["1", "2"])
-    select_multiple ["January", "February"], :from => "month"
+    select_multiple ["January", "February"], :from => "month[]"
     click_button
   end
 
@@ -20,14 +20,14 @@ describe "select_multiple" do
     with_html <<-HTML
       <html>
       <form method="post" action="/login">
-        <select name="month" multiple><option value="1">January</option><option value="2">February</option></select>
+        <select name="month[]" multiple><option value="1">January</option><option value="2">February</option></select>
         <input type="submit" />
       </form>
       </html>
     HTML
     
     webrat_session.should_receive(:post).with("/login", "month" => ["1", "2"])
-    select_multiple ["January", "February"], :from => "month"
+    select_multiple ["January", "February"], :from => "month[]"
     click_button
   end
   
@@ -35,13 +35,13 @@ describe "select_multiple" do
     with_html <<-HTML
       <html>
       <form method="post" action="/login">
-        <select name="month" multiple="multiple"><option value="1">January</option><option value="2">February</option></select>
+        <select name="month[]" multiple="multiple"><option value="1">January</option><option value="2">February</option></select>
         <input type="submit" />
       </form>
       </html>
     HTML
     webrat_session.should_receive(:post).with("/login", "month" => ["1"])
-    select_multiple ["January"], :from => "month"
+    select_multiple ["January"], :from => "month[]"
     click_button
   end
   
@@ -49,7 +49,7 @@ describe "select_multiple" do
     with_html <<-HTML
       <html>
       <form method="get" action="/login">
-        <select name="month" multiple="multiple"><option value="1">January</option></select>
+        <select name="month[]" multiple="multiple"><option value="1">January</option></select>
       </form>
       </html>
     HTML
@@ -61,13 +61,13 @@ describe "select_multiple" do
     with_html <<-HTML
       <html>
       <form method="post" action="/login">
-        <select name="encoded" multiple="multiple"><option value="A &amp; B">Encoded</option><option value="C &amp; D">Also Encoded</option></select>
+        <select name="encoded[]" multiple="multiple"><option value="A &amp; B">Encoded</option><option value="C &amp; D">Also Encoded</option></select>
         <input type="submit" />
       </form>
       </html>
     HTML
     webrat_session.should_receive(:post).with("/login", "encoded" => ["A & B", "C & D"])
-    select_multiple ["Encoded", "Also Encoded"], :from => "encoded"
+    select_multiple ["Encoded", "Also Encoded"], :from => "encoded[]"
     click_button
   end
   
@@ -75,12 +75,12 @@ describe "select_multiple" do
     with_html <<-HTML
       <html>
       <form method="post" action="/login">
-        <select name="month"><option value="1">January</option></select>
+        <select name="month[]"><option value="1">January</option></select>
         <input type="submit" />
       </form>
       </html>
     HTML
-    webrat_session.should_receive(:post).with("/login", "month" => "1")
+    webrat_session.should_receive(:post).with("/login", "month" => ["1"])
     select_multiple "January"
     click_button
   end
