@@ -58,6 +58,7 @@ module Webrat
       :field_with_id,
       :selenium,
       :simulate, :automate,
-      :field_named
+      :field_named,
+      :select_multiple
   end
 end

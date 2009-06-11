@@ -257,6 +257,7 @@ For example:
     def_delegators :current_scope, :field_with_id
     def_delegators :current_scope, :select_option
     def_delegators :current_scope, :field_named
+    def_delegators :current_scope, :select_multiple
 
   private
 

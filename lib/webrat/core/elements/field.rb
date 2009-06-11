@@ -38,7 +38,12 @@ module Webrat
     def self.field_class(element)
       case element.name
       when "button"   then ButtonField
-      when "select"   then SelectField
+      when "select"
+        if element.attributes["multiple"].nil?
+          SelectField
+        else
+          MultipleSelectField
+        end
       when "textarea" then TextareaField
       else
         case Webrat::XML.attribute(element, "type")
@@ -382,14 +387,12 @@ module Webrat
   class SelectField < Field #:nodoc:
 
     def self.xpath_search
-      ".//select"
+      ".//select[not(@multiple)]"
     end
 
     def options
       @options ||= SelectOption.load_all(@session, @element)
     end
-
-  protected
 
     def default_value
       selected_options = Webrat::XML.xpath_search(@element, ".//option[@selected = 'selected']")
@@ -402,4 +405,32 @@ module Webrat
     end
 
   end
+  
+  class MultipleSelectField < SelectField #:nodoc:
+    
+    def self.xpath_search
+      [".//select[@multiple='multiple']"]
+    end
+    
+    def set(value)
+      unless @subsequent_set
+        @value = []
+      end
+      @value << value
+      @subsequent_set = true
+    end
+
+    def to_param
+      uri_string = @value.collect {|value| "#{name}=#{CGI.escape(value)}"}.join("&")
+      case Webrat.configuration.mode
+      when :rails
+        parse_rails_request_params(uri_string)
+      when :merb
+        ::Merb::Parse.query(uri_string)
+      else
+        { name => @value.collect {|value| CGI.escape(value)} }
+      end
+    end
+  end
+
 end

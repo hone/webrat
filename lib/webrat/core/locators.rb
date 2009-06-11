@@ -8,6 +8,7 @@ require "webrat/core/locators/select_option_locator"
 require "webrat/core/locators/link_locator"
 require "webrat/core/locators/field_locator"
 require "webrat/core/locators/form_locator"
+require "webrat/core/locators/select_multiple_options_locator"
 
 module Webrat
   module Locators
