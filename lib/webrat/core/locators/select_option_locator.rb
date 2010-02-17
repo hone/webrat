@@ -14,6 +14,7 @@ module Webrat
       end
 
       def locate
+        select_multiple options.gsub('and','').split(',').collect(&:strip), :from => from
         if @id_or_name_or_label
           field = FieldLocator.new(@session, @dom, @id_or_name_or_label, SelectField).locate!
 

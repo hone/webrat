@@ -71,7 +71,7 @@ module Webrat
       self.selenium_server_port = 4444
       self.infinite_redirect_limit = 10
       self.selenium_browser_key = '*firefox'
-      self.selenium_browser_startup_timeout = 5
+      self.selenium_browser_startup_timeout = 30
     end
 
     def parse_with_nokogiri? #:nodoc:
