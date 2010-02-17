@@ -7,6 +7,20 @@ require 'spec/rake/spectask'
 require 'spec/rake/verify_rcov'
 require File.expand_path('./lib/webrat.rb')
 
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "webrat"
+    gemspec.summary = "Webrat. Ruby Acceptance Testing for Web applications"
+    gemspec.description = gemspec.summary
+    gemspec.email = "bryan@brynary.com"
+    gemspec.homepage = "http://github.com/brynary/webrat"
+    gemspec.authors = ["Bryan Helmkamp"]
+    gemspec.add_dependency "nokogiri", ">= 1.2.0"
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+end
 ##############################################################################
 # Package && release
 ##############################################################################
