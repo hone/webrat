@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{webrat}
-  s.version = "0.4.5"
+  s.version = "0.4.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bryan Helmkamp"]
-  s.date = %q{2010-02-17}
+  s.date = %q{2010-02-21}
   s.description = %q{Webrat. Ruby Acceptance Testing for Web applications}
   s.email = %q{bryan@brynary.com}
   s.extra_rdoc_files = [
@@ -223,12 +223,13 @@ Gem::Specification.new do |s|
      "spec/rcov.opts",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "vendor/selenium-server.jar"
+     "vendor/selenium-server.jar",
+     "webrat.gemspec"
   ]
   s.homepage = %q{http://github.com/brynary/webrat}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Webrat. Ruby Acceptance Testing for Web applications}
   s.test_files = [
     "spec/integration/merb/tasks/merb.thor/ops.rb",
