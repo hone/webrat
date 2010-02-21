@@ -25,7 +25,7 @@ module Webrat
         end
 
         def pid_file
-          prepare_pid_file("#{RAILS_ROOT}/tmp/pids", "mongrel_selenium.pid")
+          prepare_pid_file("#{RAILS_ROOT}/tmp/pids", Webrat.configuration.pid_file)
         end
 
         def start_command

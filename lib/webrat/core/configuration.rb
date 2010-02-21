@@ -61,6 +61,9 @@ module Webrat
     # loop? Defaults to 10
     attr_accessor :infinite_redirect_limit
 
+    # PID file for mongrel server
+    attr_accessor :pid_file
+
     def initialize # :nodoc:
       self.open_error_files = true
       self.parse_with_nokogiri = true
@@ -72,6 +75,7 @@ module Webrat
       self.infinite_redirect_limit = 10
       self.selenium_browser_key = '*firefox'
       self.selenium_browser_startup_timeout = 30
+      self.pid_file = "mongrel_selenium.pid"
     end
 
     def parse_with_nokogiri? #:nodoc:
