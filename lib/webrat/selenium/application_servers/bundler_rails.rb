@@ -1,3 +1,5 @@
+require "webrat/selenium/application_servers/rails"
+
 module Webrat
   module Selenium
     module ApplicationServers
