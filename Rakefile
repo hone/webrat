@@ -2,9 +2,6 @@
 require "rake/gempackagetask"
 require 'rake/rdoctask'
 require "rake/clean"
-require 'spec'
-require 'spec/rake/spectask'
-require 'spec/rake/verify_rcov'
 require File.expand_path('./lib/webrat.rb')
 
 begin
@@ -63,6 +60,10 @@ task :publish_rdoc => :docs do
   sh "scp -r doc/ brynary.com:/apps/uploads/webrat"
 end
 
+begin
+require 'spec'
+require 'spec/rake/spectask'
+require 'spec/rake/verify_rcov'
 desc "Run API and Core specs"
 Spec::Rake::SpecTask.new do |t|
   t.spec_opts = ['--options', "\"#{File.dirname(__FILE__)}/spec/spec.opts\""]
@@ -175,4 +176,6 @@ task :precommit => ["spec", "spec:jruby", "spec:integration"]
 desc 'Removes trailing whitespace'
 task :whitespace do
   sh %{find . -name '*.rb' -exec sed -i '' 's/ *$//g' {} \\;}
+end
+rescue LoadError
 end
