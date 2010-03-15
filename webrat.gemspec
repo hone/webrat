@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{webrat}
-  s.version = "0.4.6"
+  s.version = "0.4.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bryan Helmkamp"]
-  s.date = %q{2010-02-21}
+  s.date = %q{2010-03-15}
   s.description = %q{Webrat. Ruby Acceptance Testing for Web applications}
   s.email = %q{bryan@brynary.com}
   s.extra_rdoc_files = [
@@ -79,6 +79,7 @@ Gem::Specification.new do |s|
      "lib/webrat/selenium/application_server_factory.rb",
      "lib/webrat/selenium/application_servers.rb",
      "lib/webrat/selenium/application_servers/base.rb",
+     "lib/webrat/selenium/application_servers/bundler_rails.rb",
      "lib/webrat/selenium/application_servers/external.rb",
      "lib/webrat/selenium/application_servers/merb.rb",
      "lib/webrat/selenium/application_servers/rails.rb",
